@@ -1,25 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Films from './Films';
 
-const Films = ({titles}) => (
-  <React.Fragment>
-    {titles.map((title, index) =>
-      <article className="small-movie-card catalog__movies-card" key={index}>
-        <div className="small-movie-card__image">
-          <img src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg" alt="Fantastic Beasts: The Crimes of Grindelwald" width="280" height="175" />
-        </div>
-        <h3 className="small-movie-card__title">
-          <a className="small-movie-card__link" href="movie-page.html">{title}</a>
-        </h3>
-      </article>
-    )}
-  </React.Fragment>
-);
+const onButtonPlayClick = () => {};
 
 export default class Main extends React.Component {
+
   render() {
     const {filmsData} = this.props;
     const cardTitle = filmsData.titles;
+
     return (
       <div className="main">
         <section className="movie-card">
@@ -59,7 +49,7 @@ export default class Main extends React.Component {
                 </p>
 
                 <div className="movie-card__buttons">
-                  <button className="btn btn--play movie-card__button" type="button">
+                  <button className="btn btn--play movie-card__button" onClick={onButtonPlayClick} type="button">
                     <svg viewBox="0 0 19 19" width="19" height="19">
                       <use xlinkHref="#play-s"></use>
                     </svg>
@@ -115,7 +105,7 @@ export default class Main extends React.Component {
             </ul>
 
             <div className="catalog__movies-list">
-              <Films titles={filmsData.titles.slice(1)}/>
+              <Films titles={filmsData.titles.slice(1)} onFilmsTitleClick = {() => {}}/>
             </div>
 
 
@@ -144,9 +134,6 @@ export default class Main extends React.Component {
 
 }
 
-Films.propTypes = {
-  titles: PropTypes.array.isRequired
-};
 
 Main.propTypes = {
   filmsData: PropTypes.object.isRequired
