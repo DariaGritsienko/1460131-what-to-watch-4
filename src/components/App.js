@@ -1,6 +1,7 @@
 import React from 'react';
 import Main from './Main';
-/* eslint react/prop-types: 0 */
+import PropTypes from 'prop-types';
+
 export default class App extends React.Component {
   render() {
     const {filmsData} = this.props;
@@ -9,3 +10,7 @@ export default class App extends React.Component {
     );
   }
 }
+
+App.propTypes = {
+  filmsData: PropTypes.object.isRequired
+};
