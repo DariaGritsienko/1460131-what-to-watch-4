@@ -15,11 +15,13 @@ describe(`Films`, () => {
   it(`Should title be pressed`, () => {
     const onFilmsTitleClick = jest.fn();
     const preventDefault = jest.fn();
+    const onMouseCard = jest.fn();
 
     const films = shallow(
         <Films
           titles={titles}
           onFilmsTitleClick={onFilmsTitleClick}
+          onMouseCard={onMouseCard}
         />
     );
 
@@ -28,8 +30,24 @@ describe(`Films`, () => {
     filmsTitle.forEach((filmTitle) => {
       filmTitle.simulate(`click`, {preventDefault});
     });
+  });
+  it(`Should card be hover`, () => {
+    const onFilmsTitleClick = jest.fn();
+    const onMouseCard = jest.fn();
 
-    expect(onFilmsTitleClick.mock.calls.length).toBe(titles.length);
+    const films = shallow(
+        <Films
+          titles={titles}
+          onFilmsTitleClick={onFilmsTitleClick}
+          onMouseCard={onMouseCard}
+        />
+    );
+    expect(films.state(onMouseCard)).toBe(true);
+    films.simulate(`mouseover`);
+
+    expect(films.state(onMouseCard)).toBe(false);
+    films.simulate(`mouseleave`);
+
   });
 });
 

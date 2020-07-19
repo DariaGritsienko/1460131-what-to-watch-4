@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Films from './Films';
+import FilmsList from './FilmsList';
 
 const onButtonPlayClick = () => {};
 
@@ -44,8 +44,8 @@ export default class Main extends React.Component {
               <div className="movie-card__desc">
                 <h2 className="movie-card__title">{cardTitle[0]}</h2>
                 <p className="movie-card__meta">
-                  <span className="movie-card__genre">{filmsData.genres}</span>
-                  <span className="movie-card__year">{filmsData.years}</span>
+                  <span className="movie-card__genre">{filmsData.genres[0]}</span>
+                  <span className="movie-card__year">{filmsData.years[0]}</span>
                 </p>
 
                 <div className="movie-card__buttons">
@@ -104,10 +104,7 @@ export default class Main extends React.Component {
               </li>
             </ul>
 
-            <div className="catalog__movies-list">
-              <Films titles={filmsData.titles.slice(1)} onFilmsTitleClick = {() => {}}/>
-            </div>
-
+            <FilmsList filmsData={filmsData}/>
 
             <div className="catalog__more">
               <button className="catalog__button" type="button">Show more</button>
