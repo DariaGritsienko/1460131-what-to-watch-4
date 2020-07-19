@@ -7,8 +7,8 @@ const onButtonPlayClick = () => {};
 export default class Main extends React.Component {
 
   render() {
-    const {filmsData} = this.props;
-    const cardTitle = filmsData.titles;
+    const {filmsData, onFilmsTitleClick} = this.props;
+    const cardTitle = filmsData[0].title;
 
     return (
       <div className="main">
@@ -42,10 +42,10 @@ export default class Main extends React.Component {
               </div>
 
               <div className="movie-card__desc">
-                <h2 className="movie-card__title">{cardTitle[0]}</h2>
+                <h2 className="movie-card__title">{cardTitle}</h2>
                 <p className="movie-card__meta">
-                  <span className="movie-card__genre">{filmsData.genres[0]}</span>
-                  <span className="movie-card__year">{filmsData.years[0]}</span>
+                  <span className="movie-card__genre">{filmsData[0].genre}</span>
+                  <span className="movie-card__year">{filmsData[0].year}</span>
                 </p>
 
                 <div className="movie-card__buttons">
@@ -104,7 +104,7 @@ export default class Main extends React.Component {
               </li>
             </ul>
 
-            <FilmsList filmsData={filmsData}/>
+            <FilmsList filmsData={filmsData} onFilmsTitleClick = {onFilmsTitleClick}/>
 
             <div className="catalog__more">
               <button className="catalog__button" type="button">Show more</button>
@@ -133,5 +133,6 @@ export default class Main extends React.Component {
 
 
 Main.propTypes = {
-  filmsData: PropTypes.object.isRequired
+  filmsData: PropTypes.array.isRequired,
+  onFilmsTitleClick: PropTypes.func
 };
