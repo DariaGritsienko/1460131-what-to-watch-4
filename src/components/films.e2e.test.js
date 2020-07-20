@@ -7,7 +7,7 @@ Enzyme.configure({
   adapter: new Adapter(),
 });
 
-const films = [
+const filmsData = [
   {
     title: `Some film2`,
     year: `2014`,
@@ -29,19 +29,41 @@ const films = [
 describe(`Films`, () => {
   it(`Should title be pressed`, () => {
     const onFilmsTitleClick = jest.fn();
-    const preventDefault = jest.fn();
+    const onMouseCard = jest.fn();
 
     const filmsElement = shallow(
         <Films
-          films={films}
+          films={filmsData}
           onFilmsTitleClick={onFilmsTitleClick}
+          onMouseCard={onMouseCard}
         />
     );
 
     const filmsTitle = filmsElement.find(`a.small-movie-card__link`);
 
     filmsTitle.forEach((filmTitle) => {
-      filmTitle.simulate(`click`, {preventDefault});
+      filmTitle.simulate(`click`);
+    });
+  });
+  it(`Should card be hover`, () => {
+    const onFilmsTitleClick = jest.fn();
+    const onMouseCard = jest.fn();
+
+    const films = shallow(
+        <Films
+          films={filmsData}
+          onFilmsTitleClick={onFilmsTitleClick}
+          onMouseCard={onMouseCard}
+        />
+    );
+    const filmsArticles = films.find(`article.small-movie-card.catalog__movies-card`);
+    filmsArticles.forEach((filmsArticle) => {
+      expect(films.state(`onMouseCard`)).toBe(false);
+      filmsArticle.simulate(`mouseover`);
+
+      expect(films.state(`onMouseCard`)).toBe(true);
+      filmsArticle.simulate(`mouseleave`);
+      expect(films.state(`onMouseCard`)).toBe(false);
     });
   });
 });
