@@ -42,12 +42,13 @@ describe(`Films`, () => {
           onMouseCard={onMouseCard}
         />
     );
-    expect(films.state(onMouseCard)).toBe(true);
-    films.simulate(`mouseover`);
+    const filmsArticle = films.find(`article.small-movie-card.catalog__movies-card:first-child`);
+    expect(films.state(`onMouseCard`)).toBe(false);
+    filmsArticle.simulate(`mouseover`);
 
-    expect(films.state(onMouseCard)).toBe(false);
-    films.simulate(`mouseleave`);
-
+    expect(films.state(`onMouseCard`)).toBe(true);
+    filmsArticle.simulate(`mouseleave`);
+    expect(films.state(`onMouseCard`)).toBe(false);
   });
 });
 

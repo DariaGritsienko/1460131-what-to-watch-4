@@ -6,14 +6,17 @@ export default class Films extends PureComponent {
     super(props);
     this.onCard = this.onCard.bind(this);
     this.outCard = this.outCard.bind(this);
+    this.state = {
+      onMouseCard: false
+    };
   }
 
   onCard() {
-    this.props.onMouseCard(true);
+    this.setState({onMouseCard: true});
   }
 
   outCard() {
-    this.props.onMouseCard(false);
+    this.setState({onMouseCard: false});
   }
 
   onFilmsTitleClick(e, title) {

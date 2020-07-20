@@ -4,6 +4,8 @@ exports[`Foo <Films /> should render cards with titles 1`] = `
 Array [
   <article
     className="small-movie-card catalog__movies-card"
+    onMouseLeave={[Function]}
+    onMouseOver={[Function]}
   >
     <div
       className="small-movie-card__image"
@@ -29,6 +31,8 @@ Array [
   </article>,
   <article
     className="small-movie-card catalog__movies-card"
+    onMouseLeave={[Function]}
+    onMouseOver={[Function]}
   >
     <div
       className="small-movie-card__image"
@@ -54,6 +58,8 @@ Array [
   </article>,
   <article
     className="small-movie-card catalog__movies-card"
+    onMouseLeave={[Function]}
+    onMouseOver={[Function]}
   >
     <div
       className="small-movie-card__image"
