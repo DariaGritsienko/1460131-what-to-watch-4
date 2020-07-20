@@ -9,11 +9,6 @@ export default class FilmsList extends React.Component {
 
   render() {
     const {filmsData, onFilmsTitleClick} = this.props;
-    // const isTime = this.state.onMouseCard && this.state.time > 1;
-    // if(!this.state.onMouseCard){
-    //   this.state.time = 0;
-    // }
-    console.log(filmsData)
     return (
       <div className="catalog__movies-list">
         {filmsData.slice(1).map((film, index) => <Films film={film} key={index} onFilmsTitleClick={onFilmsTitleClick} />)}

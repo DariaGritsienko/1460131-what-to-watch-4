@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Foo <VideoPlayer /> should render videoplayer 1`] = `
+<div>
+  <video
+    autoPlay={true}
+    className="player__video"
+    loop="loop"
+    muted="muted"
+    poster="img/the-grand-budapest-hotel-poster.jpg"
+  />
+</div>
+`;

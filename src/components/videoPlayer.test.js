@@ -1,7 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import Films from './Films';
-import {BrowserRouter as Router} from 'react-router-dom';
+import VideoPlayer from './VideoPlayer';
 
 const films =
   {
@@ -20,19 +19,15 @@ const films =
       starring: `Starring: Bill Murray, Edward Norton, Jude Law, Willem Dafoe and other`,
     },
   };
-const index = 1;
-describe(`Foo`, () => {
-  it(`<Films /> should render cards with titles`, () => {
-    const onFilmsTitleClick = jest.fn();
 
+describe(`Foo`, () => {
+  it(`<VideoPlayer /> should render videoplayer`, () => {
+    const isTime = true;
     const tree = renderer.create(
-        <Router>
-          <Films
-            film={films}
-            key={index}
-            onFilmsTitleClick={onFilmsTitleClick}
-          />
-        </Router>
+        <VideoPlayer
+          film={films}
+          isTime = {isTime}
+        />
     ).toJSON();
 
     expect(tree).toMatchSnapshot();

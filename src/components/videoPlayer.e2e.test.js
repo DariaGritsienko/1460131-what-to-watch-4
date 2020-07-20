@@ -1,7 +1,7 @@
 import React from "react";
 import Enzyme, {shallow} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
-import Films from "./Films";
+import VideoPlayer from "./VideoPlayer";
 
 Enzyme.configure({
   adapter: new Adapter(),
@@ -25,49 +25,28 @@ const filmsData =
     },
   };
 
-describe(`Films`, () => {
-  it(`Should title be pressed`, () => {
-    const index = 1;
-    const onFilmsTitleClick = jest.fn();
-    const onMouseCard = jest.fn();
-
-    const filmsElement = shallow(
-        <Films
-          film={filmsData}
-          key={index}
-          onFilmsTitleClick={onFilmsTitleClick}
-          onMouseCard={onMouseCard}
-        />
-    );
-
-    const filmsTitle = filmsElement.find(`a.small-movie-card__link`);
-
-    filmsTitle.forEach((filmTitle) => {
-      filmTitle.simulate(`click`);
-    });
-  });
-  it(`Should card be hover`, () => {
-    const onFilmsTitleClick = jest.fn();
-    const onMouseCard = jest.fn();
-    const index = 1;
-
+describe(`VideoPlayer`, () => {
+  it(`Should VideoPlayer be played`, () => {
+    const isTime = true;
     const films = shallow(
-        <Films
+        <VideoPlayer
           film={filmsData}
-          key={index}
-          onFilmsTitleClick={onFilmsTitleClick}
-          onMouseCard={onMouseCard}
+          isTime={isTime}
         />
     );
-    const filmsArticles = films.find(`article.small-movie-card.catalog__movies-card`);
-    filmsArticles.forEach((filmsArticle) => {
-      expect(films.state(`onMouseCard`)).toBe(false);
-      filmsArticle.simulate(`mouseover`);
-
-      expect(films.state(`onMouseCard`)).toBe(true);
-      filmsArticle.simulate(`mouseleave`);
-      expect(films.state(`onMouseCard`)).toBe(false);
-    });
+    const video = films.find(`video.player__video`);
+    video.simulate(`play`);
+  });
+  it(`Should VideoPlayer be paused`, () => {
+    const isTime = false;
+    const films = shallow(
+        <VideoPlayer
+          film={filmsData}
+          isTime={isTime}
+        />
+    );
+    const video = films.find(`video.player__video`);
+    video.simulate(`pause`);
   });
 });
 
