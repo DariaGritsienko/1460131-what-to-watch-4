@@ -13,6 +13,7 @@ export const films = [
       moreText: `Gustave prides himself on providing first-class service to the hotel's guests, including satisfying the sexual needs of the many elderly women who stay there. When one of Gustave's lovers dies mysteriously, Gustave finds himself the recipient of a priceless painting and the chief suspect in her murder.`,
       director: `Director: Wes Andreson`,
       starring: `Starring: Bill Murray, Edward Norton, Jude Law, Willem Dafoe and other`,
+      trailer: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     },
   },
   {
@@ -29,6 +30,7 @@ export const films = [
       moreText: `Gustave prides himself on providing first-class service to the hotel's guests, including satisfying the sexual needs of the many elderly women who stay there. When one of Gustave's lovers dies mysteriously, Gustave finds himself the recipient of a priceless painting and the chief suspect in her murder.`,
       director: `Director: Wes Andreson`,
       starring: `Starring: Bill Murray, Edward Norton, Jude Law, Willem Dafoe and other`,
+      trailer: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
     },
   },
   {
@@ -45,6 +47,7 @@ export const films = [
       moreText: `Gustave prides himself on providing first-class service to the hotel's guests, including satisfying the sexual needs of the many elderly women who stay there. When one of Gustave's lovers dies mysteriously, Gustave finds himself the recipient of a priceless painting and the chief suspect in her murder.`,
       director: `Director: Wes Andreson`,
       starring: `Starring: Bill Murray, Edward Norton, Jude Law, Willem Dafoe and other`,
+      trailer: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     },
   },
   {
@@ -61,6 +64,7 @@ export const films = [
       moreText: `Gustave prides himself on providing first-class service to the hotel's guests, including satisfying the sexual needs of the many elderly women who stay there. When one of Gustave's lovers dies mysteriously, Gustave finds himself the recipient of a priceless painting and the chief suspect in her murder.`,
       director: `Director: Wes Andreson`,
       starring: `Starring: Bill Murray, Edward Norton, Jude Law, Willem Dafoe and other`,
+      trailer: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     },
   },
   {
@@ -77,6 +81,7 @@ export const films = [
       moreText: `Gustave prides himself on providing first-class service to the hotel's guests, including satisfying the sexual needs of the many elderly women who stay there. When one of Gustave's lovers dies mysteriously, Gustave finds himself the recipient of a priceless painting and the chief suspect in her murder.`,
       director: `Director: Wes Andreson`,
       starring: `Starring: Bill Murray, Edward Norton, Jude Law, Willem Dafoe and other`,
+      trailer: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     },
   },
   {
@@ -93,6 +98,7 @@ export const films = [
       moreText: `Gustave prides himself on providing first-class service to the hotel's guests, including satisfying the sexual needs of the many elderly women who stay there. When one of Gustave's lovers dies mysteriously, Gustave finds himself the recipient of a priceless painting and the chief suspect in her murder.`,
       director: `Director: Wes Andreson`,
       starring: `Starring: Bill Murray, Edward Norton, Jude Law, Willem Dafoe and other`,
+      trailer: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     },
   },
   {
@@ -109,6 +115,7 @@ export const films = [
       moreText: `Gustave prides himself on providing first-class service to the hotel's guests, including satisfying the sexual needs of the many elderly women who stay there. When one of Gustave's lovers dies mysteriously, Gustave finds himself the recipient of a priceless painting and the chief suspect in her murder.`,
       director: `Director: Wes Andreson`,
       starring: `Starring: Bill Murray, Edward Norton, Jude Law, Willem Dafoe and other`,
+      trailer: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     },
   },
   {
@@ -125,6 +132,7 @@ export const films = [
       moreText: `Gustave prides himself on providing first-class service to the hotel's guests, including satisfying the sexual needs of the many elderly women who stay there. When one of Gustave's lovers dies mysteriously, Gustave finds himself the recipient of a priceless painting and the chief suspect in her murder.`,
       director: `Director: Wes Andreson`,
       starring: `Starring: Bill Murray, Edward Norton, Jude Law, Willem Dafoe and other`,
+      trailer: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     },
   },
 ];
