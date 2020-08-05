@@ -16,17 +16,16 @@ export default class FilmsList extends React.Component {
   }
 
   render() {
-    const {filmsData} = this.props;
-
+    const {filmsData, onFilmsTitleClick} = this.props;
     return (
       <div className="catalog__movies-list">
-        <Films titles={filmsData.titles.slice(1)} onMouseCard={this.onMouseCard} onFilmsTitleClick = {() => {}} />
+        <Films films={filmsData} onMouseCard={this.onMouseCard} onFilmsTitleClick={onFilmsTitleClick} />
       </div>
     );
   }
 }
 
 FilmsList.propTypes = {
-  filmsData: PropTypes.object.isRequired,
+  filmsData: PropTypes.array.isRequired,
   onFilmsTitleClick: PropTypes.func,
 };

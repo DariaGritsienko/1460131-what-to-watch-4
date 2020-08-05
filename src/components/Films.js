@@ -1,5 +1,6 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
+import {Link} from 'react-router-dom';
 
 export default class Films extends PureComponent {
   constructor(props) {
@@ -21,16 +22,14 @@ export default class Films extends PureComponent {
 
   onFilmsTitleClick(e, title) {
     const {onFilmsTitleClick} = this.props;
-    e.preventDefault();
     onFilmsTitleClick(title);
   }
 
   render() {
-    const {titles} = this.props;
-
+    const {films} = this.props;
     return (
       <React.Fragment>
-        {titles.map((title, index) =>
+        {films.slice(1).map((film, index) =>
           <article
             className="small-movie-card catalog__movies-card"
             onMouseOver={this.onCard}
@@ -41,7 +40,7 @@ export default class Films extends PureComponent {
               <img src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg" alt="Fantastic Beasts: The Crimes of Grindelwald" width="280" height="175" />
             </div>
             <h3 className="small-movie-card__title">
-              <a className="small-movie-card__link" onClick={(e) => this.onFilmsTitleClick(e, title)} href="movie-page.html">{title}</a>
+              <Link className="small-movie-card__link" onClick={(e) => this.onFilmsTitleClick(e, film.title)} to="/about">{film.title}</Link>
             </h3>
           </article>
         )}
@@ -51,7 +50,7 @@ export default class Films extends PureComponent {
 }
 
 Films.propTypes = {
-  titles: PropTypes.array.isRequired,
+  films: PropTypes.array,
   onFilmsTitleClick: PropTypes.func,
   onMouseCard: PropTypes.func,
 };
