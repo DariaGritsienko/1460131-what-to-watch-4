@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Foo <Review /> should render reviewer 1`] = `
+<div
+  className="review"
+>
+  <blockquote
+    className="review__quote"
+  >
+    <p
+      className="review__text"
+    />
+    <footer
+      className="review__details"
+    >
+      <cite
+        className="review__author"
+      />
+      <time
+        className="review__date"
+      />
+    </footer>
+  </blockquote>
+  <div
+    className="review__rating"
+  />
+</div>
+`;

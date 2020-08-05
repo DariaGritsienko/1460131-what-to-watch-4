@@ -18,12 +18,23 @@ export default class App extends React.Component {
     this.setState({onFilmsTitleClick: isClick});
   }
 
-  _renderAbout(film) {
-    if (!film) {
+  _renderAbout(filmElement) {
+    const {filmsData} = this.props;
+    const arr = [];
+    if (!filmElement) {
       return null;
     }
+    filmsData.map((film) => {
+      arr.push(filmElement.genre === film.genre && filmElement.title !== film.title ? film : null);
+    });
     return (
-      <About filmData={film} />
+      <About
+        filmData={filmElement}
+        moreFilms={arr.filter((item) => !!item)}
+        onFilmsTitleClick={(e) => {
+          this.onFilmsTitleClick(e);
+        }}
+      />
     );
   }
 

@@ -1,0 +1,75 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Foo <Tabs /> should render Tabs 1`] = `
+Array [
+  <nav
+    className="movie-nav movie-card__nav"
+  >
+    <ul
+      className="movie-nav__list"
+    >
+      <li
+        className="movie-nav__item movie-nav__item--active"
+      >
+        <a
+          className="movie-nav__link"
+          data-index={0}
+          onClick={[Function]}
+        >
+          Reviews
+        </a>
+      </li>
+      <li
+        className="movie-nav__item "
+      >
+        <a
+          className="movie-nav__link"
+          data-index={1}
+          onClick={[Function]}
+        >
+          Overview
+        </a>
+      </li>
+      <li
+        className="movie-nav__item "
+      >
+        <a
+          className="movie-nav__link"
+          data-index={2}
+          onClick={[Function]}
+        >
+          Details
+        </a>
+      </li>
+    </ul>
+  </nav>,
+  <div
+    className="tabcontent"
+  >
+    <div
+      className="review"
+    >
+      <blockquote
+        className="review__quote"
+      >
+        <p
+          className="review__text"
+        />
+        <footer
+          className="review__details"
+        >
+          <cite
+            className="review__author"
+          />
+          <time
+            className="review__date"
+          />
+        </footer>
+      </blockquote>
+      <div
+        className="review__rating"
+      />
+    </div>
+  </div>,
+]
+`;
