@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Foo <Films /> should render cards with titles 1`] = `
+exports[`Foo <FilmsList /> should render cards with titles 1`] = `
 Array [
   <article
     className="small-movie-card catalog__movies-card"

@@ -7,7 +7,7 @@ const titles = [
 ];
 
 describe(`Foo`, () => {
-  it(`<Films /> should render cards with titles`, () => {
+  it(`<FilmsList /> should render cards with titles`, () => {
     const onFilmsTitleClick = jest.fn();
     const onMouseCard = jest.fn();
 
@@ -15,8 +15,7 @@ describe(`Foo`, () => {
         <Films
           titles={titles}
           onFilmsTitleClick={onFilmsTitleClick}
-          onMouseOver={onMouseCard}
-          onMouseLeave={onMouseCard}
+          onMouseCard={onMouseCard}
         />
     ).toJSON();
 
