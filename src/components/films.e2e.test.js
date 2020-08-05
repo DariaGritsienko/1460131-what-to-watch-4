@@ -7,7 +7,7 @@ Enzyme.configure({
   adapter: new Adapter(),
 });
 
-const filmsData = [
+const filmsData =
   {
     title: `Some film2`,
     year: `2014`,
@@ -23,17 +23,18 @@ const filmsData = [
       director: `Director: Wes Andreson`,
       starring: `Starring: Bill Murray, Edward Norton, Jude Law, Willem Dafoe and other`,
     },
-  },
-];
+  };
 
 describe(`Films`, () => {
   it(`Should title be pressed`, () => {
+    const index = 1;
     const onFilmsTitleClick = jest.fn();
     const onMouseCard = jest.fn();
 
     const filmsElement = shallow(
         <Films
-          films={filmsData}
+          film={filmsData}
+          key={index}
           onFilmsTitleClick={onFilmsTitleClick}
           onMouseCard={onMouseCard}
         />
@@ -48,10 +49,12 @@ describe(`Films`, () => {
   it(`Should card be hover`, () => {
     const onFilmsTitleClick = jest.fn();
     const onMouseCard = jest.fn();
+    const index = 1;
 
     const films = shallow(
         <Films
-          films={filmsData}
+          film={filmsData}
+          key={index}
           onFilmsTitleClick={onFilmsTitleClick}
           onMouseCard={onMouseCard}
         />

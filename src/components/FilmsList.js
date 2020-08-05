@@ -5,21 +5,13 @@ import Films from './Films';
 export default class FilmsList extends React.Component {
   constructor(props) {
     super(props);
-    this.onMouseCard = this.onMouseCard.bind(this);
-    this.state = {
-      onMouseCard: false
-    };
-  }
-
-  onMouseCard(isMouseOnCard) {
-    this.setState({onMouseCard: isMouseOnCard});
   }
 
   render() {
     const {filmsData, onFilmsTitleClick} = this.props;
     return (
       <div className="catalog__movies-list">
-        <Films films={filmsData} onMouseCard={this.onMouseCard} onFilmsTitleClick={onFilmsTitleClick} />
+        {filmsData.slice(1).map((film, index) => <Films film={film} key={index} onFilmsTitleClick={onFilmsTitleClick} />)}
       </div>
     );
   }

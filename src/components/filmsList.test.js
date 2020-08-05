@@ -1,6 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import Films from './Films';
+import FilmsList from './FilmsList';
 
 const films = [
   {
@@ -26,10 +26,9 @@ describe(`Foo`, () => {
     const onFilmsTitleClick = jest.fn();
 
     const tree = renderer.create(
-        <Films
-          films={films}
-          onFilmsTitleClick={onFilmsTitleClick}
-        />
+        <FilmsList
+          filmsData={films}
+          onFilmsTitleClick = {onFilmsTitleClick}/>
     ).toJSON();
 
     expect(tree).toMatchSnapshot();
