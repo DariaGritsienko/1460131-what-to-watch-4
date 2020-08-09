@@ -19,12 +19,12 @@ export default class App extends React.Component {
   }
 
   _renderAbout(filmElement) {
-    const {filmsData} = this.props;
+    const {store} = this.props;
     const arr = [];
     if (!filmElement) {
       return null;
     }
-    filmsData.map((film) => {
+    store.getState().films.map((film) => {
       arr.push(filmElement.genre === film.genre && filmElement.title !== film.title ? film : null);
     });
     return (
@@ -39,8 +39,11 @@ export default class App extends React.Component {
   }
 
   render() {
-    const {filmsData} = this.props;
-    const filmData = filmsData.find((film) => {
+    const {store} = this.props;
+    if (!store) {
+      return null;
+    }
+    const filmData = store.getState().films.find((film) => {
       if (film.title === this.state.onFilmsTitleClick) {
         return true;
       }
@@ -52,7 +55,8 @@ export default class App extends React.Component {
         <Switch>
           <Route exact path='/'>
             <Main
-              filmsData={filmsData}
+              filmsData={store.getState().films}
+              store={store}
               onFilmsTitleClick={(e) => {
                 this.onFilmsTitleClick(e);
               }}
@@ -68,5 +72,5 @@ export default class App extends React.Component {
 }
 
 App.propTypes = {
-  filmsData: PropTypes.array.isRequired
+  store: PropTypes.object
 };

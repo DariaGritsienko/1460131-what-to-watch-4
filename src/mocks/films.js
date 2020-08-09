@@ -58,7 +58,7 @@ export const films = [
   {
     title: `Fantastic Beasts: The Crimes of Grindelwald`,
     year: `2014`,
-    genre: `Drama`,
+    genre: `Comedy`,
     about: {
       poster: `img/the-grand-budapest-hotel-poster.jpg`,
       cover: `img/bg-the-grand-budapest-hotel.jpg`,
@@ -114,7 +114,7 @@ export const films = [
   {
     title: `Bohemian Rhapsody`,
     year: `2014`,
-    genre: `Drama`,
+    genre: `Documentary`,
     about: {
       poster: `img/the-grand-budapest-hotel-poster.jpg`,
       cover: `img/bg-the-grand-budapest-hotel.jpg`,

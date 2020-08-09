@@ -3,5 +3,33 @@
 exports[`Foo <FilmsList /> should render cards with titles 1`] = `
 <div
   className="catalog__movies-list"
-/>
+>
+  <article
+    className="small-movie-card catalog__movies-card"
+    onMouseLeave={[Function]}
+    onMouseOver={[Function]}
+  >
+    <div
+      className="small-movie-card__image"
+    >
+      <img
+        alt="Fantastic Beasts: The Crimes of Grindelwald"
+        height="175"
+        src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
+        width="280"
+      />
+    </div>
+    <h3
+      className="small-movie-card__title"
+    >
+      <a
+        className="small-movie-card__link"
+        href="/about"
+        onClick={[Function]}
+      >
+        Some film2
+      </a>
+    </h3>
+  </article>
+</div>
 `;
