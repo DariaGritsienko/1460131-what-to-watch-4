@@ -31,6 +31,7 @@ export default class App extends React.Component {
     return (
       <About
         filmData={filmElement}
+        store={store}
         moreFilms={arr.filter((item) => !!item)}
         onFilmsTitleClick={(e) => {
           this.onFilmsTitleClick(e);

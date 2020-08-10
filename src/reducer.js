@@ -7,6 +7,8 @@ const initialState = {
   page: 0,
   pageSize: 8,
   totalElements: films.length,
+  isVideoPlayerOpen: false,
+  isPlayVideo: false,
 };
 
 // Определяем действия
@@ -14,12 +16,24 @@ export const ActionType = {
   GENRE_FILMS: `GENRE_FILMS`,
   FILMS_LIST: `FILMS_LIST`,
   SHOW_MORE: `SHOW_MORE`,
+  VIDEOPLAYER_CHANGE: `VIDEOPLAYER_CHANGE`,
+  PLAY_VIDEO: `PLAY_VIDEO`,
 };
 
 // Функции определяют объект с действиями
 export const genreFilmsAction = (genre) => ({
   type: ActionType.GENRE_FILMS,
   payload: genre,
+});
+
+export const playVideoAction = (isPlay) => ({
+  type: ActionType.PLAY_VIDEO,
+  payload: isPlay,
+});
+
+export const openVideoPlayerAction = (isOpen) => ({
+  type: ActionType.VIDEOPLAYER_CHANGE,
+  payload: isOpen,
 });
 
 export const filmsListAction = (genre) => ({
@@ -31,9 +45,28 @@ export const showMoreAction = () => ({
   type: ActionType.SHOW_MORE,
 });
 
+
 // Функция для обновления хранилища
 export const reducer = (state = initialState, action) => {
   switch (action.type) {
+
+    case ActionType.PLAY_VIDEO:
+      return {
+        films: state.films,
+        pageSize: state.pageSize,
+        genre: action.payload,
+        page: 0,
+        isPlayVideo: action.payload,
+      };
+
+    case ActionType.VIDEOPLAYER_CHANGE:
+      return {
+        films: state.films,
+        pageSize: state.pageSize,
+        genre: action.payload,
+        page: 0,
+        isVideoPlayerOpen: action.payload,
+      };
 
     case ActionType.SHOW_MORE:
       return {

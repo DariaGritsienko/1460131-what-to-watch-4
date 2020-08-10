@@ -4,7 +4,7 @@ export const films = [
     year: `2014`,
     genre: `Drama`,
     about: {
-      poster: `img/the-grand-budapest-hotel-poster.jpg`,
+      poster: `img/player-poster.jpg`,
       cover: `img/bg-the-grand-budapest-hotel.jpg`,
       score: `8,9`,
       level: `Very good`,
@@ -60,7 +60,7 @@ export const films = [
     year: `2014`,
     genre: `Drama`,
     about: {
-      poster: `img/the-grand-budapest-hotel-poster.jpg`,
+      poster: `img/player-poster.jpg`,
       cover: `img/bg-the-grand-budapest-hotel.jpg`,
       score: `8,9`,
       level: `Very good`,
@@ -116,7 +116,7 @@ export const films = [
     year: `2014`,
     genre: `Drama`,
     about: {
-      poster: `img/the-grand-budapest-hotel-poster.jpg`,
+      poster: `img/player-poster.jpg`,
       cover: `img/bg-the-grand-budapest-hotel.jpg`,
       score: `8,9`,
       level: `Very good`,
@@ -172,7 +172,7 @@ export const films = [
     year: `2014`,
     genre: `Drama`,
     about: {
-      poster: `img/the-grand-budapest-hotel-poster.jpg`,
+      poster: `img/player-poster.jpg`,
       cover: `img/bg-the-grand-budapest-hotel.jpg`,
       score: `8,9`,
       level: `Very good`,
@@ -228,7 +228,7 @@ export const films = [
     year: `2014`,
     genre: `Drama`,
     about: {
-      poster: `img/the-grand-budapest-hotel-poster.jpg`,
+      poster: `img/player-poster.jpg`,
       cover: `img/bg-the-grand-budapest-hotel.jpg`,
       score: `8,9`,
       level: `Very good`,
@@ -284,7 +284,7 @@ export const films = [
     year: `2014`,
     genre: `Drama`,
     about: {
-      poster: `img/the-grand-budapest-hotel-poster.jpg`,
+      poster: `img/player-poster.jpg`,
       cover: `img/bg-the-grand-budapest-hotel.jpg`,
       score: `8,9`,
       level: `Very good`,
@@ -340,7 +340,7 @@ export const films = [
     year: `2014`,
     genre: `Comedy`,
     about: {
-      poster: `img/the-grand-budapest-hotel-poster.jpg`,
+      poster: `img/player-poster.jpg`,
       cover: `img/bg-the-grand-budapest-hotel.jpg`,
       score: `8,9`,
       level: `Very good`,
@@ -396,7 +396,7 @@ export const films = [
     year: `2014`,
     genre: `Comedy`,
     about: {
-      poster: `img/the-grand-budapest-hotel-poster.jpg`,
+      poster: `img/player-poster.jpg`,
       cover: `img/bg-the-grand-budapest-hotel.jpg`,
       score: `8,9`,
       level: `Very good`,
@@ -452,7 +452,7 @@ export const films = [
     year: `2014`,
     genre: `Comedy`,
     about: {
-      poster: `img/the-grand-budapest-hotel-poster.jpg`,
+      poster: `img/player-poster.jpg`,
       cover: `img/bg-the-grand-budapest-hotel.jpg`,
       score: `8,9`,
       level: `Very good`,
@@ -508,7 +508,7 @@ export const films = [
     year: `2014`,
     genre: `Comedy`,
     about: {
-      poster: `img/the-grand-budapest-hotel-poster.jpg`,
+      poster: `img/player-poster.jpg`,
       cover: `img/bg-the-grand-budapest-hotel.jpg`,
       score: `8,9`,
       level: `Very good`,
@@ -564,7 +564,7 @@ export const films = [
     year: `2014`,
     genre: `Comedy`,
     about: {
-      poster: `img/the-grand-budapest-hotel-poster.jpg`,
+      poster: `img/player-poster.jpg`,
       cover: `img/bg-the-grand-budapest-hotel.jpg`,
       score: `8,9`,
       level: `Very good`,
@@ -620,7 +620,7 @@ export const films = [
     year: `2014`,
     genre: `Documentary`,
     about: {
-      poster: `img/the-grand-budapest-hotel-poster.jpg`,
+      poster: `img/player-poster.jpg`,
       cover: `img/bg-the-grand-budapest-hotel.jpg`,
       score: `8,9`,
       level: `Very good`,
@@ -676,7 +676,7 @@ export const films = [
     year: `2014`,
     genre: `Drama`,
     about: {
-      poster: `img/the-grand-budapest-hotel-poster.jpg`,
+      poster: `img/player-poster.jpg`,
       cover: `img/bg-the-grand-budapest-hotel.jpg`,
       score: `8,9`,
       level: `Very good`,
@@ -732,7 +732,7 @@ export const films = [
     year: `2014`,
     genre: `Drama`,
     about: {
-      poster: `img/the-grand-budapest-hotel-poster.jpg`,
+      poster: `img/player-poster.jpg`,
       cover: `img/bg-the-grand-budapest-hotel.jpg`,
       score: `8,9`,
       level: `Very good`,
@@ -788,7 +788,7 @@ export const films = [
     year: `2014`,
     genre: `Drama`,
     about: {
-      poster: `img/the-grand-budapest-hotel-poster.jpg`,
+      poster: `img/player-poster.jpg`,
       cover: `img/bg-the-grand-budapest-hotel.jpg`,
       score: `8,9`,
       level: `Very good`,
@@ -844,7 +844,7 @@ export const films = [
     year: `2014`,
     genre: `Drama`,
     about: {
-      poster: `img/the-grand-budapest-hotel-poster.jpg`,
+      poster: `img/player-poster.jpg`,
       cover: `img/bg-the-grand-budapest-hotel.jpg`,
       score: `8,9`,
       level: `Very good`,
@@ -900,7 +900,7 @@ export const films = [
     year: `2014`,
     genre: `Drama`,
     about: {
-      poster: `img/the-grand-budapest-hotel-poster.jpg`,
+      poster: `img/player-poster.jpg`,
       cover: `img/bg-the-grand-budapest-hotel.jpg`,
       score: `8,9`,
       level: `Very good`,
