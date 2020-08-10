@@ -1,12 +1,13 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import Main from './Main';
+import Films from '../Films';
+import {BrowserRouter as Router} from 'react-router-dom';
 
-const filmsData = [
+const films =
   {
-    title: `Some film1`,
-    year: `1234`,
-    genre: `Comedy`,
+    title: `Some film2`,
+    year: `2014`,
+    genre: `Drama`,
     about: {
       poster: `img/the-grand-budapest-hotel-poster.jpg`,
       cover: `img/bg-the-grand-budapest-hotel.jpg`,
@@ -34,17 +35,23 @@ const filmsData = [
         },
       ]
     },
-  },
-];
-
+  };
+const index = 1;
 describe(`Foo`, () => {
-  it(`<Main /> should render main page`, () => {
+  it(`<Films /> should render cards with titles`, () => {
+    const onFilmsTitleClick = jest.fn();
+
     const tree = renderer.create(
-        <Main
-          filmsData={filmsData}
-        />
+        <Router>
+          <Films
+            film={films}
+            key={index}
+            onFilmsTitleClick={onFilmsTitleClick}
+          />
+        </Router>
     ).toJSON();
 
     expect(tree).toMatchSnapshot();
   });
 });
+

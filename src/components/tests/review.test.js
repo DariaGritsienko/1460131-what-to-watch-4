@@ -1,7 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import Tabs from './Tabs';
-import Review from './Review';
+import Review from '../Review';
 
 const reviewer =
   {
@@ -22,15 +21,10 @@ const reviewer =
   };
 
 describe(`Foo`, () => {
-  it(`<Tabs /> should render Tabs`, () => {
-    const items = [
-      {title: `Reviews`, content: <Review reviewer={reviewer}/>},
-      {title: `Overview`, content: <Review reviewer={reviewer}/>},
-      {title: `Details`, content: <Review reviewer={reviewer}/>},
-    ];
+  it(`<Review /> should render reviewer`, () => {
     const tree = renderer.create(
-        <Tabs
-          items={items}
+        <Review
+          reviewer={reviewer}
         />
     ).toJSON();
 

@@ -1,4 +1,7 @@
-import reducer/* , {ActionType, initialState} */ from './reducer';
+import React from "react";
+import renderer from "react-test-renderer";
+import VideoPlayer from '../VideoPlayer';
+
 const films =
   {
     title: `Some film2`,
@@ -32,12 +35,18 @@ const films =
       ]
     },
   };
+
 describe(`Foo`, () => {
-  it(`reducer`, () => {
-    expect(reducer(void 0, {})).toEqual({
-      genre: `All genres`,
-      films,
-    });
+  it(`<VideoPlayer /> should render videoplayer`, () => {
+    const isTime = true;
+    const tree = renderer.create(
+        <VideoPlayer
+          film={films}
+          isTime = {isTime}
+        />
+    ).toJSON();
+
+    expect(tree).toMatchSnapshot();
   });
 });
 

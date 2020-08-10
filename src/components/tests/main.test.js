@@ -1,12 +1,12 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import App from './App';
+import Main from '../Main';
 
-const films = [
+const filmsData = [
   {
-    title: `Some film2`,
-    year: `2014`,
-    genre: `Drama`,
+    title: `Some film1`,
+    year: `1234`,
+    genre: `Comedy`,
     about: {
       poster: `img/the-grand-budapest-hotel-poster.jpg`,
       cover: `img/bg-the-grand-budapest-hotel.jpg`,
@@ -38,10 +38,10 @@ const films = [
 ];
 
 describe(`Foo`, () => {
-  it(`<App /> should render main page in app`, () => {
+  it(`<Main /> should render main page`, () => {
     const tree = renderer.create(
-        <App
-          filmsData={films}
+        <Main
+          filmsData={filmsData}
         />
     ).toJSON();
 

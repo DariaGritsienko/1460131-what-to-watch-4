@@ -27,6 +27,7 @@ export default class App extends React.Component {
     store.getState().films.map((film) => {
       arr.push(filmElement.genre === film.genre && filmElement.title !== film.title ? film : null);
     });
+
     return (
       <About
         filmData={filmElement}

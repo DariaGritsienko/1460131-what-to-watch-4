@@ -1,9 +1,8 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import Films from './Films';
-import {BrowserRouter as Router} from 'react-router-dom';
+import GenresList from '../GenresList';
 
-const films =
+const films = [
   {
     title: `Some film2`,
     year: `2014`,
@@ -35,20 +34,18 @@ const films =
         },
       ]
     },
-  };
-const index = 1;
+  },
+];
+
 describe(`Foo`, () => {
-  it(`<Films /> should render cards with titles`, () => {
+  it(`<GenresList /> should render GenresList`, () => {
     const onFilmsTitleClick = jest.fn();
 
     const tree = renderer.create(
-        <Router>
-          <Films
-            film={films}
-            key={index}
-            onFilmsTitleClick={onFilmsTitleClick}
-          />
-        </Router>
+        <GenresList
+          filmsData={films}
+          onFilmsTitleClick = {onFilmsTitleClick}
+        />
     ).toJSON();
 
     expect(tree).toMatchSnapshot();

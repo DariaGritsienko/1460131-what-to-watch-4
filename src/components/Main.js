@@ -1,15 +1,31 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import GenresList from './GenresList';
+import ShowMore from './ShowMore';
 
 const onButtonPlayClick = () => {};
 
 export default class Main extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      page: 0,
+      isButtonShowMoreActive: false,
+    };
+  }
+  onButtonClickMore(page) {
+    this.setState({page});
+  }
+  onButtonShowMoreActive(isActive) {
+    this.setState({isButtonShowMoreActive: isActive});
+  }
 
   render() {
     const {filmsData, onFilmsTitleClick, store} = this.props;
     const cardTitle = filmsData[0].title;
-
+    if (!store) {
+      return null;
+    }
     return (
       <div className="main">
         <section className="movie-card">
@@ -70,9 +86,9 @@ export default class Main extends React.Component {
         <div className="page-content">
           <section className="catalog">
             <h2 className="catalog__title visually-hidden">Catalog</h2>
-            <GenresList store={store} filmsData={filmsData} onFilmsTitleClick={onFilmsTitleClick}/>
+            <GenresList store={store} page={this.state.page} onButtonShowMoreActive={(isActive) => this.onButtonShowMoreActive(isActive)} filmsData={filmsData} onFilmsTitleClick={onFilmsTitleClick}/>
             <div className="catalog__more">
-              <button className="catalog__button" type="button">Show more</button>
+              <ShowMore store={store} onButtonClickMore={(page) => this.onButtonClickMore(page)} isButtonShowMoreActive={this.state.isButtonShowMoreActive}/>
             </div>
           </section>
 

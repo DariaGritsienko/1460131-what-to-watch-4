@@ -1,8 +1,13 @@
 import React from "react";
-import renderer from "react-test-renderer";
-import GenresList from './GenresList';
+import Enzyme, {shallow} from "enzyme";
+import Adapter from "enzyme-adapter-react-16";
+import Films from "../Films";
 
-const films = [
+Enzyme.configure({
+  adapter: new Adapter(),
+});
+
+const filmsData =
   {
     title: `Some film2`,
     year: `2014`,
@@ -34,21 +39,51 @@ const films = [
         },
       ]
     },
-  },
-];
+  };
 
-describe(`Foo`, () => {
-  it(`<GenresList /> should render GenresList`, () => {
+describe(`Films`, () => {
+  it(`Should title be pressed`, () => {
+    const index = 1;
     const onFilmsTitleClick = jest.fn();
+    const onMouseCard = jest.fn();
 
-    const tree = renderer.create(
-        <GenresList
-          filmsData={films}
-          onFilmsTitleClick = {onFilmsTitleClick}
+    const filmsElement = shallow(
+        <Films
+          film={filmsData}
+          key={index}
+          onFilmsTitleClick={onFilmsTitleClick}
+          onMouseCard={onMouseCard}
         />
-    ).toJSON();
+    );
 
-    expect(tree).toMatchSnapshot();
+    const filmsTitle = filmsElement.find(`a.small-movie-card__link`);
+
+    filmsTitle.forEach((filmTitle) => {
+      filmTitle.simulate(`click`);
+    });
+  });
+  it(`Should card be hover`, () => {
+    const onFilmsTitleClick = jest.fn();
+    const onMouseCard = jest.fn();
+    const index = 1;
+
+    const films = shallow(
+        <Films
+          film={filmsData}
+          key={index}
+          onFilmsTitleClick={onFilmsTitleClick}
+          onMouseCard={onMouseCard}
+        />
+    );
+    const filmsArticles = films.find(`article.small-movie-card.catalog__movies-card`);
+    filmsArticles.forEach((filmsArticle) => {
+      expect(films.state(`onMouseCard`)).toBe(false);
+      filmsArticle.simulate(`mouseover`);
+
+      expect(films.state(`onMouseCard`)).toBe(true);
+      filmsArticle.simulate(`mouseleave`);
+      expect(films.state(`onMouseCard`)).toBe(false);
+    });
   });
 });
 

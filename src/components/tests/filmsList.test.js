@@ -1,8 +1,9 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import VideoPlayer from './VideoPlayer';
+import FilmsList from '../FilmsList';
+import {BrowserRouter as Router} from 'react-router-dom';
 
-const films =
+const films = [
   {
     title: `Some film2`,
     year: `2014`,
@@ -34,16 +35,19 @@ const films =
         },
       ]
     },
-  };
+  },
+];
 
 describe(`Foo`, () => {
-  it(`<VideoPlayer /> should render videoplayer`, () => {
-    const isTime = true;
+  it(`<FilmsList /> should render cards with titles`, () => {
+    const onFilmsTitleClick = jest.fn();
+
     const tree = renderer.create(
-        <VideoPlayer
-          film={films}
-          isTime = {isTime}
-        />
+        <Router>
+          <FilmsList
+            filmsData={films}
+            onFilmsTitleClick = {onFilmsTitleClick}/>
+        </Router>
     ).toJSON();
 
     expect(tree).toMatchSnapshot();

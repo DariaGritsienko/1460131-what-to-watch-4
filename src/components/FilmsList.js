@@ -11,13 +11,13 @@ export default class FilmsList extends React.Component {
     const {filmsData, onFilmsTitleClick} = this.props;
     return (
       <div className="catalog__movies-list">
-        {filmsData.content.map((film, index) => <Films film={film} key={index} onFilmsTitleClick={onFilmsTitleClick} />)}
+        {filmsData.map((film, index) => <Films film={film} key={index} onFilmsTitleClick={onFilmsTitleClick} />)}
       </div>
     );
   }
 }
 
 FilmsList.propTypes = {
-  filmsData: PropTypes.object.isRequired,
+  filmsData: PropTypes.array.isRequired,
   onFilmsTitleClick: PropTypes.func,
 };

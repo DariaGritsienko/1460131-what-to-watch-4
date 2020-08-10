@@ -1,6 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import About from './About';
+import About from '../About';
 import {BrowserRouter as Router} from 'react-router-dom';
 
 const filmData = {
