@@ -52,6 +52,9 @@ describe(`Foo`, () => {
       [NameSpace.DATA]: {
         filmsList: films,
       },
+      [NameSpace.USER]: {
+        authorizationStatus: `NO_AUTH`,
+      }
     });
     const tree = renderer.create(
         <Provider store={store}>

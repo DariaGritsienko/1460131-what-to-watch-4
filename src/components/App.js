@@ -3,8 +3,13 @@ import Main from './Main';
 import {connect} from "react-redux";
 import About from './About';
 import PropTypes from 'prop-types';
-import {BrowserRouter, Route, Switch} from 'react-router-dom';
+import {Switch, Route, Router} from "react-router-dom";
 import {getFilms, getFilmsListGenre} from '../reducer/data/selectors';
+import {AppRoute} from '../const';
+import history from "../history";
+import SignIn from './SignIn';
+import {Operation as UserOperation} from "../reducer/user/user";
+import {getAuthorizationStatus} from "../reducer/user/selectors";
 
 class App extends React.Component {
   constructor(props) {
@@ -21,7 +26,7 @@ class App extends React.Component {
   }
 
   _renderAbout(filmElement) {
-    const {filmsListLittle, store} = this.props;
+    const {filmsListLittle, store, authorizationStatus} = this.props;
     const arr = [];
 
     if (!filmElement || !filmsListLittle) {
@@ -34,6 +39,7 @@ class App extends React.Component {
     return (
       <About
         filmData={filmElement}
+        authorizationStatus={authorizationStatus}
         store={store}
         moreFilms={arr.filter((item) => !!item)}
         onFilmsTitleClick={(e) => {
@@ -44,7 +50,7 @@ class App extends React.Component {
   }
 
   render() {
-    const {filmsListLittle, films: {filmsList, page, pageSize}, store} = this.props;
+    const {authorizationStatus, filmsListLittle, films: {filmsList, page, pageSize}, store, login} = this.props;
     if (!filmsListLittle || !filmsList) {
       return null;
     }
@@ -57,11 +63,12 @@ class App extends React.Component {
     });
 
     return (
-      <BrowserRouter>
+      <Router history={history}>
         <Switch>
           <Route exact path='/'>
             <Main
               filmsData={filmsListLittle.films}
+              authorizationStatus={authorizationStatus}
               page={page}
               pageSize={pageSize}
               totalElements={filmsListLittle.totalElements}
@@ -72,26 +79,39 @@ class App extends React.Component {
               }}
             />
           </Route>
+          <Route exact path={AppRoute.LOGIN}>
+            <SignIn
+              onSubmit={login}
+              history={history}
+            />
+          </Route>
           <Route path='/about'>
             {this._renderAbout(filmData)}
           </Route>
         </Switch>
-      </BrowserRouter>
+      </Router>
     );
   }
 }
 const mapStateToProps = (state) => ({
+  authorizationStatus: getAuthorizationStatus(state),
   films: getFilms(state),
   filmsListLittle: getFilmsListGenre(state),
 });
-
+const mapDispatchToProps = (dispatch) => ({
+  login(authData) {
+    dispatch(UserOperation.login(authData));
+  },
+});
 export {App};
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
 App.propTypes = {
   filmsListLittle: PropTypes.object,
+  authorizationStatus: PropTypes.string,
   store: PropTypes.object,
   films: PropTypes.object,
   filmsList: PropTypes.array,
   page: PropTypes.number,
   pageSize: PropTypes.number,
+  login: PropTypes.func,
 };

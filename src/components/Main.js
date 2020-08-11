@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from "react-redux";
+import {Link} from 'react-router-dom';
 import GenresList from './GenresList';
 import ShowMore from './ShowMore';
 import VideoPlayerFull from './VideoPlayerFull';
@@ -33,7 +34,7 @@ class Main extends React.Component {
   }
 
   render() {
-    const {filmsData, totalElements, pageSize, page, video: {isVideoPlayerOpen}, onFilmsTitleClick, store, AllFilms} = this.props;
+    const {authorizationStatus, filmsData, totalElements, pageSize, page, video: {isVideoPlayerOpen}, onFilmsTitleClick, store, AllFilms} = this.props;
     if (!store || !filmsData || !AllFilms || !filmsData[0]) {
       return null;
     }
@@ -64,9 +65,12 @@ class Main extends React.Component {
                 </div>
 
                 <div className="user-block">
-                  <div className="user-block__avatar">
-                    <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
-                  </div>
+                  { authorizationStatus === `AUTH` ?
+                    <div className="user-block__avatar">
+                      <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
+                    </div>
+                    : <Link className="user-block__link" to="/login">Sign in</Link>
+                  }
                 </div>
               </header>
 
@@ -146,4 +150,5 @@ Main.propTypes = {
   page: PropTypes.number,
   totalElements: PropTypes.number,
   pageSize: PropTypes.number,
+  authorizationStatus: PropTypes.string,
 };

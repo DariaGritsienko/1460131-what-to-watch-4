@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Tabs from './Tabs';
-// import Review from './Review';
+import {Link} from 'react-router-dom';
 import {connect} from "react-redux";
 import Films from './Films';
 import VideoPlayerFull from './VideoPlayerFull';
@@ -41,7 +41,6 @@ class About extends React.Component {
 
           <div className="movie-card__text">
             <p>{filmData.description}</p>
-            {/* <p>{filmData.about.moreText}</p> */}
             <p className="movie-card__director"><strong>Director: {filmData.director}</strong></p>
             <p className="movie-card__starring"><strong>Starring: {starring} and other</strong></p>
           </div>
@@ -95,26 +94,18 @@ class About extends React.Component {
   }
 
   renderReviews() {
-    // const {filmData} = this.props;
-
     return (
       <div className="movie-card__reviews movie-card__row">
         <div className="movie-card__reviews-col">
-          {/* {filmData.about.reviewer.slice(0, 3).map((review, index) => {
-            return <Review key={`${review}-${index}`} reviewer={review} />;
-          })} */}
         </div>
         <div className="movie-card__reviews-col">
-          {/* {filmData.about.reviewer.slice(3, filmData.starring.length).map((review, index) => {
-            return <Review key={`${review}-${index}`} reviewer={review} />;
-          })} */}
         </div>
       </div>
     );
   }
 
   render() {
-    const {filmData, moreFilms, onFilmsTitleClick, store, video: {isVideoPlayerOpen}} = this.props;
+    const {authorizationStatus, filmData, moreFilms, onFilmsTitleClick, store, video: {isVideoPlayerOpen}} = this.props;
     const items = [
       {title: `Overview`, content: this.renderOverview()},
       {title: `Details`, content: this.renderDetails()},
@@ -151,9 +142,12 @@ class About extends React.Component {
                     </div>
 
                     <div className="user-block">
-                      <div className="user-block__avatar">
-                        <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
-                      </div>
+                      { authorizationStatus === `AUTH` ?
+                        <div className="user-block__avatar">
+                          <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
+                        </div>
+                        : <Link className="user-block__link" to="/login">Sign in</Link>
+                      }
                     </div>
                   </header>
 
@@ -241,5 +235,6 @@ About.propTypes = {
   store: PropTypes.object,
   filmData: PropTypes.object.isRequired,
   moreFilms: PropTypes.array.isRequired,
-  onFilmsTitleClick: PropTypes.func
+  onFilmsTitleClick: PropTypes.func,
+  authorizationStatus: PropTypes.string,
 };
