@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Tabs from './Tabs';
-// import Review from './Review';
 import {connect} from "react-redux";
 import Films from './Films';
 import VideoPlayerFull from './VideoPlayerFull';
@@ -28,6 +27,9 @@ class About extends React.Component {
     if (!filmData || !filmData.starring) {
       return null;
     }
+    const filmInfo = {
+      scoresCount: filmData.scores_count,
+    };
     const starring = filmData.starring.slice(0, 4).join(`, `);
     return (
         <>
@@ -35,13 +37,12 @@ class About extends React.Component {
             <div className="movie-rating__score">{filmData.rating}</div>
             <p className="movie-rating__meta">
               <span className="movie-rating__level">Very good</span>
-              <span className="movie-rating__count">{filmData.scores_count} ratings</span>
+              <span className="movie-rating__count">{filmInfo.scoresCount} ratings</span>
             </p>
           </div>
 
           <div className="movie-card__text">
             <p>{filmData.description}</p>
-            {/* <p>{filmData.about.moreText}</p> */}
             <p className="movie-card__director"><strong>Director: {filmData.director}</strong></p>
             <p className="movie-card__starring"><strong>Starring: {starring} and other</strong></p>
           </div>
@@ -54,6 +55,9 @@ class About extends React.Component {
     if (!filmData || !filmData.starring) {
       return null;
     }
+    const filmInfo = {
+      runTime: filmData.run_time,
+    };
     return (
       <div className="movie-card__text movie-card__row">
         <div className="movie-card__text-col">
@@ -79,7 +83,7 @@ class About extends React.Component {
         <div className="movie-card__text-col">
           <p className="movie-card__details-item">
             <strong className="movie-card__details-name">Run Time</strong>
-            <span className="movie-card__details-value">{filmData.run_time}</span>
+            <span className="movie-card__details-value">{filmInfo.runTime}</span>
           </p>
           <p className="movie-card__details-item">
             <strong className="movie-card__details-name">Genre</strong>
@@ -95,19 +99,11 @@ class About extends React.Component {
   }
 
   renderReviews() {
-    // const {filmData} = this.props;
-
     return (
       <div className="movie-card__reviews movie-card__row">
         <div className="movie-card__reviews-col">
-          {/* {filmData.about.reviewer.slice(0, 3).map((review, index) => {
-            return <Review key={`${review}-${index}`} reviewer={review} />;
-          })} */}
         </div>
         <div className="movie-card__reviews-col">
-          {/* {filmData.about.reviewer.slice(3, filmData.starring.length).map((review, index) => {
-            return <Review key={`${review}-${index}`} reviewer={review} />;
-          })} */}
         </div>
       </div>
     );
@@ -123,7 +119,9 @@ class About extends React.Component {
     if (!store || !filmData) {
       return null;
     }
-
+    const filmInfo = {
+      backgroundImage: filmData.background_image,
+    };
     return (
       <>
         {
@@ -136,7 +134,7 @@ class About extends React.Component {
               <section className="movie-card movie-card--full">
                 <div className="movie-card__hero">
                   <div className="movie-card__bg">
-                    <img src={filmData.background_image} alt={filmData.name} />
+                    <img src={filmInfo.backgroundImage} alt={filmData.name} />
                   </div>
 
                   <h1 className="visually-hidden">WTW</h1>

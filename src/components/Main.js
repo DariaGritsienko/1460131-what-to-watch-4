@@ -37,7 +37,10 @@ class Main extends React.Component {
     if (!store || !filmsData || !AllFilms || !filmsData[0]) {
       return null;
     }
-
+    const filmInfo = {
+      backgroundImage: filmsData[0].background_image,
+      posterImage: filmsData[0].poster_image,
+    };
     return (
       <>
         {
@@ -49,7 +52,7 @@ class Main extends React.Component {
           || <div className="main">
             <section className="movie-card">
               <div className="movie-card__bg">
-                <img src={filmsData[0].background_image} alt={filmsData[0].name} />
+                <img src={filmInfo.backgroundImage} alt={filmsData[0].name} />
               </div>
 
               <h1 className="visually-hidden">WTW</h1>
@@ -73,7 +76,7 @@ class Main extends React.Component {
               <div className="movie-card__wrap">
                 <div className="movie-card__info">
                   <div className="movie-card__poster">
-                    <img src={filmsData[0].poster_image} alt="The Grand Budapest Hotel poster" width="218" height="327" />
+                    <img src={filmInfo.posterImage} alt="The Grand Budapest Hotel poster" width="218" height="327" />
                   </div>
                   <div className="movie-card__desc">
                     <h2 className="movie-card__title">{filmsData[0].name}</h2>
