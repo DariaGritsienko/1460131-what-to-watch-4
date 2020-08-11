@@ -1,8 +1,11 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
-import {playVideoAction} from '../reducer';
+import {ActionCreator} from "../reducer/films/films";
+import {connect} from "react-redux";
+import {getInfoVideo} from '../reducer/films/selectors';
+import {getFilms} from '../reducer/data/selectors';
 
-export default class VideoPlayerFull extends PureComponent {
+class VideoPlayerFull extends PureComponent {
   constructor(props) {
     super(props);
     this.videoRef = React.createRef();
@@ -12,14 +15,16 @@ export default class VideoPlayerFull extends PureComponent {
   }
   onClose() {
     this.props.onCloseVideoPlayer(false);
+    this.props.store.dispatch(ActionCreator.playVideoAction(false));
+    this.props.store.dispatch(ActionCreator.openVideoPlayerAction(false));
   }
 
   handlePlayVideoPlayer() {
-    if (this.props.store.getState().isPlayVideo) {
-      this.props.store.dispatch(playVideoAction(false));
+    if (this.props.store.getState().FILMS.isPlayVideo) {
+      this.props.store.dispatch(ActionCreator.playVideoAction(false));
       this.videoRef.current.pause();
     } else {
-      this.props.store.dispatch(playVideoAction(true));
+      this.props.store.dispatch(ActionCreator.playVideoAction(true));
       this.videoRef.current.play();
     }
   }
@@ -60,18 +65,21 @@ export default class VideoPlayerFull extends PureComponent {
     return fulltime;
   }
   render() {
-    const {film} = this.props;
+    const {films: {filmsList}} = this.props;
+    if (!filmsList || !filmsList[0]) {
+      return null;
+    }
 
     return (
       <div className="player">
         <video
-          src={film.about.trailer}
+          src={filmsList[0].video_link}
           ref={this.videoRef}
           onTimeUpdate={() => {
             this.secondsToTime(this.videoRef.current.duration, this.videoRef.current.currentTime);
           }}
           className="player__video"
-          poster={film.about.poster}
+          poster={filmsList[0].poster_image}
         >
         </video>
 
@@ -113,9 +121,14 @@ export default class VideoPlayerFull extends PureComponent {
     );
   }
 }
-
+const mapStateToProps = (state) => ({
+  video: getInfoVideo(state),
+  films: getFilms(state),
+});
+export {VideoPlayerFull};
+export default connect(mapStateToProps)(VideoPlayerFull);
 VideoPlayerFull.propTypes = {
-  film: PropTypes.object.isRequired,
+  films: PropTypes.object,
   store: PropTypes.object,
   onCloseVideoPlayer: PropTypes.func,
 };

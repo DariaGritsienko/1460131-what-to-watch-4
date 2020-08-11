@@ -7,8 +7,6 @@ exports[`Foo <VideoPlayer /> should render videoplayer 1`] = `
     className="player__video"
     loop="loop"
     muted="muted"
-    poster="img/the-grand-budapest-hotel-poster.jpg"
-    src="https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm"
   />
 </div>
 `;

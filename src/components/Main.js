@@ -1,11 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {connect} from "react-redux";
 import GenresList from './GenresList';
 import ShowMore from './ShowMore';
 import VideoPlayerFull from './VideoPlayerFull';
-import {openVideoPlayerAction} from '../reducer';
+import {ActionCreator} from "../reducer/films/films";
+import {getInfoVideo} from '../reducer/films/selectors';
 
-export default class Main extends React.Component {
+class Main extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -15,17 +17,15 @@ export default class Main extends React.Component {
   }
 
   onButtonPlayClick() {
-    this.props.store.dispatch(openVideoPlayerAction(true));
-    this.setState({isVideoPlayerOpen: true});
+    this.props.store.dispatch(ActionCreator.openVideoPlayerAction(true));
   }
 
   onCloseVideoPlayer(isPlay) {
-    this.setState({isVideoPlayerOpen: isPlay});
-    this.props.store.dispatch(openVideoPlayerAction(isPlay));
+    this.props.store.dispatch(ActionCreator.openVideoPlayerAction(isPlay));
   }
 
-  onButtonClickMore(page) {
-    this.setState({page});
+  onButtonClickMore(pageI) {
+    this.setState({pageI});
   }
 
   onButtonShowMoreActive(isActive) {
@@ -33,25 +33,23 @@ export default class Main extends React.Component {
   }
 
   render() {
-    const {filmsData, onFilmsTitleClick, store} = this.props;
-    const cardTitle = filmsData[0].title;
-    if (!store) {
+    const {filmsData, totalElements, pageSize, page, video: {isVideoPlayerOpen}, onFilmsTitleClick, store, AllFilms} = this.props;
+    if (!store || !filmsData || !AllFilms || !filmsData[0]) {
       return null;
     }
 
     return (
       <>
         {
-          store.getState().isVideoPlayerOpen
+          isVideoPlayerOpen
           && <VideoPlayerFull
-            film={filmsData[0]}
             onCloseVideoPlayer={(isPlay) => this.onCloseVideoPlayer(isPlay)}
             store={store}
           />
           || <div className="main">
             <section className="movie-card">
               <div className="movie-card__bg">
-                <img src="img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel" />
+                <img src={filmsData[0].background_image} alt={filmsData[0].name} />
               </div>
 
               <h1 className="visually-hidden">WTW</h1>
@@ -75,10 +73,10 @@ export default class Main extends React.Component {
               <div className="movie-card__wrap">
                 <div className="movie-card__info">
                   <div className="movie-card__poster">
-                    <img src="img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width="218" height="327" />
+                    <img src={filmsData[0].poster_image} alt="The Grand Budapest Hotel poster" width="218" height="327" />
                   </div>
                   <div className="movie-card__desc">
-                    <h2 className="movie-card__title">{cardTitle}</h2>
+                    <h2 className="movie-card__title">{filmsData[0].name}</h2>
                     <p className="movie-card__meta">
                       <span className="movie-card__genre">{filmsData[0].genre}</span>
                       <span className="movie-card__year">{filmsData[0].year}</span>
@@ -106,9 +104,9 @@ export default class Main extends React.Component {
             <div className="page-content">
               <section className="catalog">
                 <h2 className="catalog__title visually-hidden">Catalog</h2>
-                <GenresList store={store} page={this.state.page} onButtonShowMoreActive={(isActive) => this.onButtonShowMoreActive(isActive)} filmsData={filmsData} onFilmsTitleClick={onFilmsTitleClick}/>
+                <GenresList store={store} page={this.state.page} onButtonShowMoreActive={(isActive) => this.onButtonShowMoreActive(isActive)} filmsData={filmsData} AllFilms={AllFilms} onFilmsTitleClick={onFilmsTitleClick}/>
                 <div className="catalog__more">
-                  <ShowMore store={store} onButtonClickMore={(page) => this.onButtonClickMore(page)} isButtonShowMoreActive={this.state.isButtonShowMoreActive}/>
+                  <ShowMore store={store} pageSize={pageSize} page={page} totalElements={totalElements} onButtonClickMore={(pageI) => this.onButtonClickMore(pageI)} isButtonShowMoreActive={this.state.isButtonShowMoreActive}/>
                 </div>
               </section>
 
@@ -134,9 +132,18 @@ export default class Main extends React.Component {
 
 }
 
-
+const mapStateToProps = (state) => ({
+  video: getInfoVideo(state),
+});
+export {Main};
+export default connect(mapStateToProps)(Main);
 Main.propTypes = {
   filmsData: PropTypes.array.isRequired,
+  video: PropTypes.object,
+  AllFilms: PropTypes.array,
   store: PropTypes.object,
-  onFilmsTitleClick: PropTypes.func
+  onFilmsTitleClick: PropTypes.func,
+  page: PropTypes.number,
+  totalElements: PropTypes.number,
+  pageSize: PropTypes.number,
 };

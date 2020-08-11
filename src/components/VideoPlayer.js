@@ -10,7 +10,7 @@ export default class VideoPlayer extends PureComponent {
     const {film} = this.props;
     return (
       <div>
-        <video loop="loop" autoPlay muted="muted" src={film.about.trailer} className="player__video" poster={film.about.poster}></video>
+        <video loop="loop" autoPlay muted="muted" src={film.preview_video_link} className="player__video" poster={film.preview_image}></video>
       </div>
     );
   }

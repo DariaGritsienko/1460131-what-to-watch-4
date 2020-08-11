@@ -1,7 +1,12 @@
 import React from "react";
 import renderer from "react-test-renderer";
+import configureStore from "redux-mock-store";
 import About from '../About';
 import {BrowserRouter as Router} from 'react-router-dom';
+import {Provider} from 'react-redux';
+import NameSpace from "../../reducer/name-space";
+
+const mockStore = configureStore([]);
 
 const filmData = {
   title: `Some film2`,
@@ -72,14 +77,22 @@ const filmDataMore = [{
 describe(`Foo`, () => {
   it(`<About /> should render about page`, () => {
     const onFilmsTitleClick = jest.fn();
+    const store = mockStore({
+      [NameSpace.FILMS]: {
+        isVideoPlayerOpen: false,
+        isPlayVideo: false,
+      },
+    });
     const tree = renderer.create(
-        <Router>
-          <About
-            filmData={filmData}
-            moreFilms={filmDataMore}
-            onFilmsTitleClick={onFilmsTitleClick}
-          />
-        </Router>
+        <Provider store={store}>
+          <Router>
+            <About
+              filmData={filmData}
+              moreFilms={filmDataMore}
+              onFilmsTitleClick={onFilmsTitleClick}
+            />
+          </Router>
+        </Provider>
     ).toJSON();
 
     expect(tree).toMatchSnapshot();

@@ -15,7 +15,6 @@ exports[`Foo <FilmsList /> should render cards with titles 1`] = `
       <img
         alt="Fantastic Beasts: The Crimes of Grindelwald"
         height="175"
-        src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
         width="280"
       />
     </div>
@@ -26,9 +25,7 @@ exports[`Foo <FilmsList /> should render cards with titles 1`] = `
         className="small-movie-card__link"
         href="/about"
         onClick={[Function]}
-      >
-        Some film2
-      </a>
+      />
     </h3>
   </article>
 </div>

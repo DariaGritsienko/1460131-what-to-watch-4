@@ -2,7 +2,6 @@ import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 import VideoPlayer from './VideoPlayer';
-
 export default class Films extends PureComponent {
   constructor(props) {
     super(props);
@@ -33,10 +32,10 @@ export default class Films extends PureComponent {
         >
           <div className="small-movie-card__image">
             {isTime ? <VideoPlayer film={film} /> :
-              <img src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg" alt="Fantastic Beasts: The Crimes of Grindelwald" width="280" height="175" />}
+              <img src={film.poster_image} alt="Fantastic Beasts: The Crimes of Grindelwald" width="280" height="175" />}
           </div>
           <h3 className="small-movie-card__title">
-            <Link className="small-movie-card__link" onClick={(e) => this.onFilmsTitleClick(e, film.title)} to="/about">{film.title}</Link>
+            <Link className="small-movie-card__link" onClick={(e) => this.onFilmsTitleClick(e, film.name)} to="/about">{film.name}</Link>
           </h3>
         </article>
       </React.Fragment>

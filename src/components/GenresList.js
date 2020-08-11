@@ -1,24 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import FilmsList from './FilmsList';
-import {genreFilmsAction, filmsListAction} from '../reducer';
-
-export default function GenresList({onButtonShowMoreActive, store, onFilmsTitleClick, filmsData}) {
+import {ActionCreator} from '../reducer/films/films';
+export default function GenresList({onButtonShowMoreActive, store, onFilmsTitleClick, filmsData, AllFilms}) {
   const [active, setActive] = React.useState(0);
 
   const openTab = (e, genre) => {
     setActive(+e.target.dataset.index);
-    store.dispatch(genreFilmsAction(genre));
-    store.dispatch(filmsListAction(genre));
-    onButtonShowMoreActive(store.getState().films.length <= store.getState().pageSize * (store.getState().page + 1));
+    store.dispatch(ActionCreator.genreFilmsAction(genre));
+    onButtonShowMoreActive(filmsData.length <= store.getState().pageSize * (store.getState().page + 1));
   };
   if (!store) {
     return null;
   }
-  const genreList = {'All genres': {genre: `All genres`, content: store.getState().films}};
-
-  filmsData.map((film) => {
-    genreList[film.genre] = {genre: film.genre, content: store.getState().films};
+  const genreList = {'All genres': {genre: `All genres`, content: filmsData}};
+  AllFilms.map((film) => {
+    genreList[film.genre] = {genre: film.genre, content: filmsData};
   });
 
   return (
@@ -42,7 +39,7 @@ export default function GenresList({onButtonShowMoreActive, store, onFilmsTitleC
       </ul>
       {Object.values(genreList)[active] &&
         <FilmsList
-          filmsData={Object.values(genreList)[active].content.slice(0, store.getState().pageSize * (store.getState().page + 1))}
+          filmsData={filmsData}
           onFilmsTitleClick = {onFilmsTitleClick}
         />
       }
@@ -55,4 +52,5 @@ GenresList.propTypes = {
   onFilmsTitleClick: PropTypes.func,
   onButtonShowMoreActive: PropTypes.func,
   filmsData: PropTypes.array.isRequired,
+  AllFilms: PropTypes.array,
 };

@@ -1,15 +1,15 @@
 import React from 'react';
-import {showMoreAction} from '../reducer';
+import {ActionCreator} from "../reducer/films/films";
 import PropTypes from 'prop-types';
 
-export default function ShowMore({store, onButtonClickMore, isButtonShowMoreActive}) {
+export default function ShowMore({store, totalElements, pageSize, page, onButtonClickMore, isButtonShowMoreActive}) {
 
   const onClickMore = () => {
-    store.dispatch(showMoreAction());
+    store.dispatch(ActionCreator.showMoreAction());
     onButtonClickMore(store.getState().page);
   };
 
-  if (!store || isButtonShowMoreActive || store.getState().films.length <= store.getState().pageSize * (store.getState().page + 1)) {
+  if (!store || isButtonShowMoreActive || totalElements <= pageSize * (page + 1)) {
     return null;
   }
 
@@ -23,9 +23,11 @@ export default function ShowMore({store, onButtonClickMore, isButtonShowMoreActi
     </button>
   );
 }
-
 ShowMore.propTypes = {
   isButtonShowMoreActive: PropTypes.bool,
   store: PropTypes.object,
-  onButtonClickMore: PropTypes.func
+  onButtonClickMore: PropTypes.func,
+  page: PropTypes.number,
+  pageSize: PropTypes.number,
+  totalElements: PropTypes.number,
 };

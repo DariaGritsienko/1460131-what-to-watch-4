@@ -1,6 +1,11 @@
 import React from "react";
+import configureStore from "redux-mock-store";
 import renderer from "react-test-renderer";
 import App from '../App';
+import {Provider} from 'react-redux';
+import NameSpace from "../../reducer/name-space";
+
+const mockStore = configureStore([]);
 
 const films = [
   {
@@ -39,10 +44,21 @@ const films = [
 
 describe(`Foo`, () => {
   it(`<App /> should render main page in app`, () => {
+    const store = mockStore({
+      [NameSpace.FILMS]: {
+        isVideoPlayerOpen: false,
+        isPlayVideo: false,
+      },
+      [NameSpace.DATA]: {
+        filmsList: films,
+      },
+    });
     const tree = renderer.create(
-        <App
-          filmsData={films}
-        />
+        <Provider store={store}>
+          <App
+            filmsData={films}
+          />
+        </Provider>
     ).toJSON();
 
     expect(tree).toMatchSnapshot();

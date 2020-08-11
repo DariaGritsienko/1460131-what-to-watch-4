@@ -1,10 +1,12 @@
 import React from 'react';
 import Main from './Main';
+import {connect} from "react-redux";
 import About from './About';
 import PropTypes from 'prop-types';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
+import {getFilms, getFilmsListGenre} from '../reducer/data/selectors';
 
-export default class App extends React.Component {
+class App extends React.Component {
   constructor(props) {
     super(props);
     this.onFilmsTitleClick = this.onFilmsTitleClick.bind(this);
@@ -19,13 +21,14 @@ export default class App extends React.Component {
   }
 
   _renderAbout(filmElement) {
-    const {store} = this.props;
+    const {filmsListLittle, store} = this.props;
     const arr = [];
-    if (!filmElement) {
+
+    if (!filmElement || !filmsListLittle) {
       return null;
     }
-    store.getState().films.map((film) => {
-      arr.push(filmElement.genre === film.genre && filmElement.title !== film.title ? film : null);
+    filmsListLittle.films.map((film) => {
+      arr.push(filmElement.genre === film.genre && filmElement.name !== film.name ? film : null);
     });
 
     return (
@@ -41,12 +44,13 @@ export default class App extends React.Component {
   }
 
   render() {
-    const {store} = this.props;
-    if (!store) {
+    const {filmsListLittle, films: {filmsList, page, pageSize}, store} = this.props;
+    if (!filmsListLittle || !filmsList) {
       return null;
     }
-    const filmData = store.getState().films.find((film) => {
-      if (film.title === this.state.onFilmsTitleClick) {
+
+    const filmData = filmsListLittle.films.find((film) => {
+      if (film.name === this.state.onFilmsTitleClick) {
         return true;
       }
       return false;
@@ -57,7 +61,11 @@ export default class App extends React.Component {
         <Switch>
           <Route exact path='/'>
             <Main
-              filmsData={store.getState().films}
+              filmsData={filmsListLittle.films}
+              page={page}
+              pageSize={pageSize}
+              totalElements={filmsListLittle.totalElements}
+              AllFilms={filmsList}
               store={store}
               onFilmsTitleClick={(e) => {
                 this.onFilmsTitleClick(e);
@@ -72,7 +80,18 @@ export default class App extends React.Component {
     );
   }
 }
+const mapStateToProps = (state) => ({
+  films: getFilms(state),
+  filmsListLittle: getFilmsListGenre(state),
+});
 
+export {App};
+export default connect(mapStateToProps)(App);
 App.propTypes = {
-  store: PropTypes.object
+  filmsListLittle: PropTypes.object,
+  store: PropTypes.object,
+  films: PropTypes.object,
+  filmsList: PropTypes.array,
+  page: PropTypes.number,
+  pageSize: PropTypes.number,
 };
