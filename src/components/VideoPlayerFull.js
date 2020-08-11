@@ -69,17 +69,20 @@ class VideoPlayerFull extends PureComponent {
     if (!filmsList || !filmsList[0]) {
       return null;
     }
-
+    const filmInfo = {
+      videoLink: filmsList[0].video_link,
+      posterImage: filmsList[0].poster_image,
+    };
     return (
       <div className="player">
         <video
-          src={filmsList[0].video_link}
+          src={filmInfo.videoLink}
           ref={this.videoRef}
           onTimeUpdate={() => {
             this.secondsToTime(this.videoRef.current.duration, this.videoRef.current.currentTime);
           }}
           className="player__video"
-          poster={filmsList[0].poster_image}
+          poster={filmInfo.posterImage}
         >
         </video>
 
