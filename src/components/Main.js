@@ -6,7 +6,7 @@ import GenresList from './GenresList';
 import ShowMore from './ShowMore';
 import VideoPlayerFull from './VideoPlayerFull';
 import {ActionCreator} from "../reducer/films/films";
-import {getInfoVideo} from '../reducer/films/selectors';
+import {getInfoVideo, getIsInList} from '../reducer/films/selectors';
 
 class Main extends React.Component {
   constructor(props) {
@@ -33,6 +33,36 @@ class Main extends React.Component {
     this.setState({isButtonShowMoreActive: isActive});
   }
 
+  handleChangeList() {
+    const {isInList, outOfList, addToList, history, authorizationStatus} = this.props;
+    if (!authorizationStatus) {
+      return history.push(`/login`);
+    } else {
+      if (isInList) {
+        return outOfList();
+      } else {
+        return addToList();
+      }
+    }
+  }
+
+  renderButtonList() {
+    const {isInList} = this.props;
+    return (
+      <button className="btn btn--list movie-card__button" type="button" onClick={() => this.handleChangeList()}>
+        {
+          !isInList ?
+            <svg viewBox="0 0 19 20" width="19" height="20">
+              <use xlinkHref="#add"></use>
+            </svg>
+            : <svg viewBox="0 0 18 14" width="18" height="14">
+              <use xlinkHref="#in-list"></use>
+            </svg>
+        }
+        <span>My list</span>
+      </button>
+    );
+  }
   render() {
     const {authorizationStatus, filmsData, totalElements, pageSize, page, video: {isVideoPlayerOpen}, onFilmsTitleClick, store, AllFilms} = this.props;
     if (!store || !filmsData || !AllFilms || !filmsData[0]) {
@@ -42,6 +72,7 @@ class Main extends React.Component {
       backgroundImage: filmsData[0].background_image,
       posterImage: filmsData[0].poster_image,
     };
+
     return (
       <>
         {
@@ -69,9 +100,11 @@ class Main extends React.Component {
 
                 <div className="user-block">
                   { authorizationStatus === `AUTH` ?
-                    <div className="user-block__avatar">
-                      <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
-                    </div>
+                    <Link to="/mylist">
+                      <div className="user-block__avatar">
+                        <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
+                      </div>
+                    </Link>
                     : <Link className="user-block__link" to="/login">Sign in</Link>
                   }
                 </div>
@@ -96,12 +129,7 @@ class Main extends React.Component {
                         </svg>
                         <span>Play</span>
                       </button>
-                      <button className="btn btn--list movie-card__button" type="button">
-                        <svg viewBox="0 0 19 20" width="19" height="20">
-                          <use xlinkHref="#add"></use>
-                        </svg>
-                        <span>My list</span>
-                      </button>
+                      {this.renderButtonList()}
                     </div>
                   </div>
                 </div>
@@ -141,7 +169,9 @@ class Main extends React.Component {
 
 const mapStateToProps = (state) => ({
   video: getInfoVideo(state),
+  isInList: getIsInList(state),
 });
+
 export {Main};
 export default connect(mapStateToProps)(Main);
 Main.propTypes = {
@@ -154,4 +184,8 @@ Main.propTypes = {
   totalElements: PropTypes.number,
   pageSize: PropTypes.number,
   authorizationStatus: PropTypes.string,
+  isInList: PropTypes.bool,
+  outOfList: PropTypes.func,
+  addToList: PropTypes.func,
+  history: PropTypes.object,
 };

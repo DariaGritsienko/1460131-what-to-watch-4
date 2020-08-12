@@ -1,0 +1,131 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Foo <MyList /> should render cards with titles 1`] = `
+<div
+  className="user-page"
+>
+  <header
+    className="page-header user-page__head"
+  >
+    <div
+      className="logo"
+    >
+      <a
+        className="logo__link"
+        href="main.html"
+      >
+        <span
+          className="logo__letter logo__letter--1"
+        >
+          W
+        </span>
+        <span
+          className="logo__letter logo__letter--2"
+        >
+          T
+        </span>
+        <span
+          className="logo__letter logo__letter--3"
+        >
+          W
+        </span>
+      </a>
+    </div>
+    <h1
+      className="page-title user-page__title"
+    >
+      My list
+    </h1>
+    <div
+      className="user-block"
+    >
+      <div
+        className="user-block__avatar"
+      >
+        <img
+          alt="User avatar"
+          height="63"
+          src="img/avatar.jpg"
+          width="63"
+        />
+      </div>
+    </div>
+  </header>
+  <section
+    className="catalog"
+  >
+    <h2
+      className="catalog__title visually-hidden"
+    >
+      Catalog
+    </h2>
+    <div
+      className="catalog__movies-list"
+    >
+      <div
+        className="catalog__movies-list"
+      >
+        <article
+          className="small-movie-card catalog__movies-card"
+          onMouseLeave={[Function]}
+          onMouseOver={[Function]}
+        >
+          <div
+            className="small-movie-card__image"
+          >
+            <img
+              alt="Fantastic Beasts: The Crimes of Grindelwald"
+              height="175"
+              width="280"
+            />
+          </div>
+          <h3
+            className="small-movie-card__title"
+          >
+            <a
+              className="small-movie-card__link"
+              href="/about"
+              onClick={[Function]}
+            />
+          </h3>
+        </article>
+      </div>
+    </div>
+  </section>
+  <footer
+    className="page-footer"
+  >
+    <div
+      className="logo"
+    >
+      <a
+        className="logo__link logo__link--light"
+        href="main.html"
+      >
+        <span
+          className="logo__letter logo__letter--1"
+        >
+          W
+        </span>
+        <span
+          className="logo__letter logo__letter--2"
+        >
+          T
+        </span>
+        <span
+          className="logo__letter logo__letter--3"
+        >
+          W
+        </span>
+      </a>
+    </div>
+    <div
+      className="copyright"
+    >
+      <p>
+        © 2019 What to watch Ltd.
+      </p>
+    </div>
+  </footer>
+</div>
+`;

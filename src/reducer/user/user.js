@@ -14,6 +14,8 @@ const initialState = {
 const ActionType = {
   REQUIRED_AUTHORIZATION: `REQUIRED_AUTHORIZATION`,
   ADD_REVIEW: `ADD_REVIEW`,
+  DELETE_FILM: `DELETE_FILM`,
+  ADD_FILM: `ADD_FILM`,
 };
 
 const ActionCreator = {
@@ -29,6 +31,18 @@ const ActionCreator = {
       payload: status,
     };
   },
+  deleteFilm: (status) => {
+    return {
+      type: ActionType.DELETE_FILM,
+      payload: status,
+    };
+  },
+  addFilm: (status) => {
+    return {
+      type: ActionType.ADD_FILM,
+      payload: status,
+    };
+  },
 };
 
 const reducer = (state = initialState, action) => {
@@ -38,6 +52,14 @@ const reducer = (state = initialState, action) => {
         authorizationStatus: action.payload,
       });
     case ActionType.ADD_REVIEW:
+      return Object.assign({}, state, {
+        addReview: action.payload,
+      });
+    case ActionType.DELETE_FILM:
+      return Object.assign({}, state, {
+        addReview: action.payload,
+      });
+    case ActionType.ADD_FILM:
       return Object.assign({}, state, {
         addReview: action.payload,
       });
@@ -77,6 +99,26 @@ const Operation = {
       })
       .catch(() => {
         dispatch(ActionCreator.addReview(Success.NO_SUCCESSFULL));
+      });
+  },
+
+  outOfList: (authData) => (dispatch, getState, api) => {
+    return api.delete(`/list`, {authData})
+      .then(() => {
+        dispatch(ActionCreator.deleteFilm(Success.SUCCESSFULL));
+      })
+      .catch(() => {
+        dispatch(ActionCreator.deleteFilm(Success.NO_SUCCESSFULL));
+      });
+  },
+
+  addToList: (authData) => (dispatch, getState, api) => {
+    return api.post(`/list`, {authData})
+      .then(() => {
+        dispatch(ActionCreator.addFilm(Success.SUCCESSFULL));
+      })
+      .catch(() => {
+        dispatch(ActionCreator.addFilm(Success.NO_SUCCESSFULL));
       });
   },
 };

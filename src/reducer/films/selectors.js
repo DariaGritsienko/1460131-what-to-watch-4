@@ -7,3 +7,7 @@ export const getInfoVideo = (state) => {
     isPlayVideo: state[NameSpace.FILMS].isPlayVideo,
   };
 };
+
+export const getIsInList = (state) => {
+  return state[NameSpace.FILMS].IsInList;
+};

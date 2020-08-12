@@ -8,6 +8,7 @@ const initialState = {
   totalElements: films.length,
   isVideoPlayerOpen: false,
   isPlayVideo: false,
+  IsInList: false,
 };
 
 // Определяем действия

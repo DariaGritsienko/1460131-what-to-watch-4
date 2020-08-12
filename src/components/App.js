@@ -8,6 +8,7 @@ import {getFilms, getFilmsListGenre} from '../reducer/data/selectors';
 import {AppRoute} from '../const';
 import history from "../history";
 import SignIn from './SignIn';
+import MyList from './MyList';
 import {Operation as UserOperation} from "../reducer/user/user";
 import {getAuthorizationStatus} from "../reducer/user/selectors";
 import AddReview from './AddReview';
@@ -51,7 +52,7 @@ class App extends React.Component {
   }
 
   render() {
-    const {authorizationStatus, filmsListLittle, films: {filmsList, page, pageSize}, store, login, review} = this.props;
+    const {authorizationStatus, addToList, outOfList, filmsListLittle, films: {filmsList, page, pageSize}, store, login, review} = this.props;
     if (!filmsListLittle || !filmsList) {
       return null;
     }
@@ -71,6 +72,9 @@ class App extends React.Component {
               filmsData={filmsListLittle.films}
               authorizationStatus={authorizationStatus}
               page={page}
+              outOfList={outOfList}
+              addToList={addToList}
+              history={history}
               pageSize={pageSize}
               totalElements={filmsListLittle.totalElements}
               AllFilms={filmsList}
@@ -78,6 +82,14 @@ class App extends React.Component {
               onFilmsTitleClick={(e) => {
                 this.onFilmsTitleClick(e);
               }}
+            />
+          </Route>
+          <Route exact path='/mylist'>
+            <MyList
+              onFilmsTitleClick={(e) => {
+                this.onFilmsTitleClick(e);
+              }}
+              filmsData={filmsList}
             />
           </Route>
           <Route exact path={AppRoute.LOGIN}>
@@ -112,6 +124,12 @@ const mapDispatchToProps = (dispatch) => ({
   review(authData) {
     dispatch(UserOperation.review(authData));
   },
+  outOfList(authData) {
+    dispatch(UserOperation.outOfList(authData));
+  },
+  addToList(authData) {
+    dispatch(UserOperation.addToList(authData));
+  },
 });
 export {App};
 export default connect(mapStateToProps, mapDispatchToProps)(App);
@@ -125,4 +143,6 @@ App.propTypes = {
   pageSize: PropTypes.number,
   login: PropTypes.func,
   review: PropTypes.func,
+  addToList: PropTypes.func,
+  outOfList: PropTypes.func,
 };
