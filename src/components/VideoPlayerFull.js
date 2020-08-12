@@ -14,9 +14,9 @@ class VideoPlayerFull extends PureComponent {
     this.videoTogglerRef = React.createRef();
   }
   onClose() {
-    this.props.onCloseVideoPlayer(false);
     this.props.store.dispatch(ActionCreator.playVideoAction(false));
     this.props.store.dispatch(ActionCreator.openVideoPlayerAction(false));
+    this.props.history.push(`/`);
   }
 
   handlePlayVideoPlayer() {
@@ -134,4 +134,5 @@ VideoPlayerFull.propTypes = {
   films: PropTypes.object,
   store: PropTypes.object,
   onCloseVideoPlayer: PropTypes.func,
+  history: PropTypes.object,
 };

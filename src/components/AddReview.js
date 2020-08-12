@@ -26,7 +26,7 @@ class AddReview extends PureComponent {
     if (reviewStatus !== `SUCCESSFULL`) {
       return null;
     } else {
-      return history.push(`/about`);
+      return history.push(`/films/:id`);
     }
   }
 

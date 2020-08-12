@@ -1,6 +1,8 @@
 export const AppRoute = {
   LOGIN: `/login`,
-  ABOUT: `/about`,
-  ADD_REVIEW: `/dev-review`,
+  ABOUT: `/films/:id`,
+  ADD_REVIEW: `/films/:id/review`,
   ROOT: `/`,
+  PLAYER: `/player/:id`,
+  MYLIST: `/mylist`,
 };

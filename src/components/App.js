@@ -12,6 +12,8 @@ import MyList from './MyList';
 import {Operation as UserOperation} from "../reducer/user/user";
 import {getAuthorizationStatus} from "../reducer/user/selectors";
 import AddReview from './AddReview';
+import VideoPlayerFull from './VideoPlayerFull';
+import {getInfoVideo} from '../reducer/films/selectors';
 
 class App extends React.Component {
   constructor(props) {
@@ -28,7 +30,7 @@ class App extends React.Component {
   }
 
   _renderAbout(filmElement) {
-    const {filmsListLittle, store, authorizationStatus} = this.props;
+    const {filmsListLittle, outOfList, addToList, store, authorizationStatus} = this.props;
     const arr = [];
 
     if (!filmElement || !filmsListLittle) {
@@ -43,6 +45,9 @@ class App extends React.Component {
         filmData={filmElement}
         authorizationStatus={authorizationStatus}
         store={store}
+        outOfList={outOfList}
+        history={history}
+        addToList={addToList}
         moreFilms={arr.filter((item) => !!item)}
         onFilmsTitleClick={(e) => {
           this.onFilmsTitleClick(e);
@@ -52,7 +57,7 @@ class App extends React.Component {
   }
 
   render() {
-    const {authorizationStatus, addToList, outOfList, filmsListLittle, films: {filmsList, page, pageSize}, store, login, review} = this.props;
+    const {authorizationStatus, video, addToList, outOfList, filmsListLittle, films: {filmsList, page, pageSize}, store, login, review} = this.props;
     if (!filmsListLittle || !filmsList) {
       return null;
     }
@@ -67,7 +72,7 @@ class App extends React.Component {
     return (
       <Router history={history}>
         <Switch>
-          <Route exact path='/'>
+          <Route exact path={AppRoute.ROOT}>
             <Main
               filmsData={filmsListLittle.films}
               authorizationStatus={authorizationStatus}
@@ -84,7 +89,7 @@ class App extends React.Component {
               }}
             />
           </Route>
-          <Route exact path='/mylist'>
+          <Route exact path={AppRoute.MYLIST}>
             <MyList
               onFilmsTitleClick={(e) => {
                 this.onFilmsTitleClick(e);
@@ -98,14 +103,21 @@ class App extends React.Component {
               history={history}
             />
           </Route>
+          <Route exact path={AppRoute.PLAYER}>
+            <VideoPlayerFull
+              history={history}
+              store={store}
+              video={video}
+            />
+          </Route>
           <Route exact path={AppRoute.ADD_REVIEW}>
             <AddReview
               onSubmit={review}
               history={history}
             />
           </Route>
-          <Route path='/about'>
-            {this._renderAbout(filmData)}
+          <Route path={AppRoute.ABOUT}>
+            {this._renderAbout(filmData, history)}
           </Route>
         </Switch>
       </Router>
@@ -114,6 +126,7 @@ class App extends React.Component {
 }
 const mapStateToProps = (state) => ({
   authorizationStatus: getAuthorizationStatus(state),
+  video: getInfoVideo(state),
   films: getFilms(state),
   filmsListLittle: getFilmsListGenre(state),
 });
@@ -145,4 +158,6 @@ App.propTypes = {
   review: PropTypes.func,
   addToList: PropTypes.func,
   outOfList: PropTypes.func,
+  history: PropTypes.object,
+  video: PropTypes.object,
 };

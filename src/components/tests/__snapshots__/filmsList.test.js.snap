@@ -23,7 +23,7 @@ exports[`Foo <FilmsList /> should render cards with titles 1`] = `
     >
       <a
         className="small-movie-card__link"
-        href="/about"
+        href="/films/:id"
         onClick={[Function]}
       />
     </h3>

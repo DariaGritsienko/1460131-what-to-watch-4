@@ -38,7 +38,7 @@ export default class Films extends PureComponent {
               <img src={filmInfo.posterImage} alt="Fantastic Beasts: The Crimes of Grindelwald" width="280" height="175" />}
           </div>
           <h3 className="small-movie-card__title">
-            <Link className="small-movie-card__link" onClick={(e) => this.onFilmsTitleClick(e, film.name)} to="/about">{film.name}</Link>
+            <Link className="small-movie-card__link" onClick={(e) => this.onFilmsTitleClick(e, film.name)} to={`/films/${film.id}`}>{film.name}</Link>
           </h3>
         </article>
       </React.Fragment>
