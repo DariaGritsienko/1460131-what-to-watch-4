@@ -10,6 +10,7 @@ import history from "../history";
 import SignIn from './SignIn';
 import {Operation as UserOperation} from "../reducer/user/user";
 import {getAuthorizationStatus} from "../reducer/user/selectors";
+import AddReview from './AddReview';
 
 class App extends React.Component {
   constructor(props) {
@@ -50,7 +51,7 @@ class App extends React.Component {
   }
 
   render() {
-    const {authorizationStatus, filmsListLittle, films: {filmsList, page, pageSize}, store, login} = this.props;
+    const {authorizationStatus, filmsListLittle, films: {filmsList, page, pageSize}, store, login, review} = this.props;
     if (!filmsListLittle || !filmsList) {
       return null;
     }
@@ -85,6 +86,12 @@ class App extends React.Component {
               history={history}
             />
           </Route>
+          <Route exact path={AppRoute.ADD_REVIEW}>
+            <AddReview
+              onSubmit={review}
+              history={history}
+            />
+          </Route>
           <Route path='/about'>
             {this._renderAbout(filmData)}
           </Route>
@@ -102,6 +109,9 @@ const mapDispatchToProps = (dispatch) => ({
   login(authData) {
     dispatch(UserOperation.login(authData));
   },
+  review(authData) {
+    dispatch(UserOperation.review(authData));
+  },
 });
 export {App};
 export default connect(mapStateToProps, mapDispatchToProps)(App);
@@ -114,4 +124,5 @@ App.propTypes = {
   page: PropTypes.number,
   pageSize: PropTypes.number,
   login: PropTypes.func,
+  review: PropTypes.func,
 };
